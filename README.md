@@ -43,6 +43,9 @@ Link para acessar a documentação oficial: [Lumen website](https://lumen.larave
 #Instalar a dependências do projeto
 composer install
 
+#Cria chave do projeto
+php artisan key:generate
+
 #Criar as tabelas no BD
 php artisan migrate
 
