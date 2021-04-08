@@ -16,6 +16,7 @@ class CreatePayment extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('customer_id');
+            $table->string('dtPayment', 10);
             $table->foreign('customer_id')->references('id')->on('customers');
             $table->float('payment', 10, 2);
             $table->timestamps();

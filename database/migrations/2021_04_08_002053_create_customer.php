@@ -17,7 +17,7 @@ class CreateCustomer extends Migration
             $table->id();
             $table->string('name', 100);
             $table->string('dtNasc', 10);
-            $table->string('email', 100);
+            $table->string('email', 100)->unique();
             $table->timestamps();
         });
     }

@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Payment extends Model
 {
     protected $fillable = [
-        'customer_id', 'payment'
+        'customer_id', 'dtPayment', 'payment'
     ];
+    public function customer(){
+        return $this->belongsTo(Customer::class);
+    }
 }
