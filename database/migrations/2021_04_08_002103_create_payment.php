@@ -17,7 +17,7 @@ class CreatePayment extends Migration
             $table->id();
             $table->unsignedBigInteger('customer_id');
             $table->string('dtPayment', 10);
-            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->foreign('customer_id')->references('id')->on('customers')->cascadeOnDelete();
             $table->float('payment', 10, 2);
             $table->timestamps();
         });
