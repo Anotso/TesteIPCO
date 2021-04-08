@@ -1,24 +1,76 @@
-# Lumen PHP Framework
+# API para cadastro de Customer e Payment
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://img.shields.io/packagist/v/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://img.shields.io/packagist/l/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
 
-## Official Documentation
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
 
-## Contributing
+## Documentação oficial do Lumen
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Link para acessar a documentação oficial: [Lumen website](https://lumen.laravel.com/docs).
 
-## Security Vulnerabilities
+## Rotas para consumir a API
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+* Verbo Post HTTP:
+  - /customer => rota para cadastro de customer;
+  - /payment => rota para cadastro de customer;
 
-## License
+* Verbo Get HTTP:
+  - /customer/all => retorna todos os customers cadastrados na base de dados;
+  - /customer/{id} => retorna todos os dados do customer que possui o ID informado;
+  - /customer/{id}/payments  =>  retorna todos os dados do customer e as informações existentes na tabela de payments com base no ID informado;
+  - /payment /all => retorna todos os payments cadastrados na base de dados;
+  - /payment /{id} => retorna todos os dados do payment que possui o ID informado;
+* Verbo Put HTTP:
+  - /customer/{id} => caminho para atualizar todos os dados do customer que possui o ID informado;
+  - /payment/{id} => caminho para atualizar todos os dados do customer que possui o ID informado;
+* Verbo Delete HTTP:
+  - /customer/{id} => caminho para excluir os dados do customer que possui o ID informado;
+  - /payment/{id} => caminho para excluir os dados do payment que possui o ID informado;
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+## Comando para executar os Testes
+
+```
+./vendor/bin/phpunit
+```
+
+
+
+## Comandos para executar após git clone
+
+```
+#Instalar a dependências do projeto
+composer install
+
+#Criar as tabelas no BD
+php artisan migrate
+
+```
+
+
+
+## Estrutura aguardada de Json
+
+* Customer:
+
+```
+{
+ “name”: string|length:100,
+ “dtNasc”: string|length:10,
+ “email”: string|length:100
+}
+
+```
+
+* Payment:
+
+```
+{
+ “customer_id”: int,
+ “dtPayment”: string|length:10,
+ “payment ”: float|length:10
+}
+
+```
+

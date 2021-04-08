@@ -7,19 +7,6 @@
 | Application Routes
 |--------------------------------------------------------------------------
 |
-• POST – customer
-• GET – customer/all
-• GET – customer/123
-• PUT – customer/123
-• DELETE – customer/123
-
-• POST – payment
-• GET – payment/all
-• GET – payment/123
-• PUT – payment/123
-• DELETE – payment/123
-
-• GET – customer/123/payments
 |
 */
 
