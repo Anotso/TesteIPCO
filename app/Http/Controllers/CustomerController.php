@@ -2,32 +2,62 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
     public function store(Request $request){
-        // return("Teste");
-        return ($request);
+        $validateEmail = '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/';
+        if (preg_match($validateEmail, $request->email)!=0) {
+            $customer = Customer::create($request->all());
+        return(json_encode($customer));
+        }else{
+            return('Formato de e-mail inválido');
+        }
     }
     public function all()
     {
-        return("Todos os clientes");
+        $customer = Customer::all();
+        return(json_encode($customer));
     }
     public function show($id)
     {
-        return("Retorna o cliente $id");
+        $customer = Customer::find($id);
+        if($customer!=null){
+            return(json_encode($customer));
+        }else{
+            return(json_encode(['state'=> 204, 'message' => 'Usuário não localizado']));
+        }
     }
     public function showPayment($id)
     {
         return("Retorna todos os pagamentos do usuário com ID: $id");
     }
-    public function update($id)
+    public function update(Request $request, $id)
     {
-        # code...
+        $validateEmail = '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/';
+        if (preg_match($validateEmail, $request->email)!=0) {
+            $customer = Customer::find($id);
+            $customer->name = $request->name;
+            $customer->email = $request->email;
+            $customer->dtNasc = $request->dtNasc;
+            if ($customer->save()) {
+                return(json_encode($customer));
+            }else{
+                //Neste caso a requisição foi aceita, mas por algum motivo não foi possível atualizar o dado
+                return(json_encode(['state'=> 202, 'message' => 'Não foi possível atualizar os dados']));
+            }
+        }else{
+            return('Formato de e-mail inválido');
+        }
     }
     public function destroy($id)
     {
-        # code...
+        if ($customer = Customer::destroy($id)) {
+            return(json_encode(['state'=> 200, 'message' => 'Usuário excluido com sucesso']));
+        }else{
+            return(json_encode(['state'=> 202, 'message' => 'Não foi possível excluir o usuário']));
+        }
     }
 }
