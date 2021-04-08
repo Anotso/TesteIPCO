@@ -39,7 +39,8 @@ class CustomerController extends Controller
     }
     public function showPayment($id)
     {
-        $customer = Customer::find($id)->with('payments')->first();
+        // dd($id);
+        $customer = Customer::where('id', '=', $id)->with('payments')->get();
         if($customer!=null){
             return(json_encode($customer));
         }else{

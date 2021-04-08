@@ -47,7 +47,7 @@ composer install
 php artisan key:generate
 
 #Criar as tabelas no BD
-php artisan migrate
+php artisan migrate --seed
 
 ```
 
